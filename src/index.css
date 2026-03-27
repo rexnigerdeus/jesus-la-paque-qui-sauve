@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", serif;
+
+  --color-primary: #ffda6a;
+  --color-on-primary: #131313;
+  --color-secondary: #abc7ff;
+  --color-surface: #131313;
+  --color-surface-container-low: #1C1B1B;
+  --color-surface-container-highest: #353534;
+  --color-on-surface-variant: #D6C4AC;
+  --color-outline-variant: rgba(214, 196, 172, 0.15);
+
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface-variant font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-outline-variant;
+}
+
+.glass-dark {
+  @apply bg-black/40 backdrop-blur-xl border border-outline-variant;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-linear-to-b from-primary to-primary/60;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 30%, rgba(255, 218, 106, 0.15) 0%, transparent 60%),
+              radial-gradient(circle at 10% 80%, rgba(171, 199, 255, 0.1) 0%, transparent 50%);
+}

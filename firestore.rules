@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: registrations
+    // Document ID: auto-generated
+    // Fields:
+    //   - fullName: string (required, 1-100 chars)
+    //   - phoneNumber: string (required, 8-20 chars)
+    //   - residence: string (required, 1-100 chars)
+    //   - createdAt: timestamp (required)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "tossdaniel@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function isValidRegistration(data) {
+      return hasRequiredFields(['fullName', 'phoneNumber', 'residence', 'createdAt']) &&
+             hasOnlyAllowedFields(['fullName', 'phoneNumber', 'residence', 'createdAt']) &&
+             data.fullName is string && data.fullName.size() >= 1 && data.fullName.size() <= 100 &&
+             data.phoneNumber is string && data.phoneNumber.size() >= 8 && data.phoneNumber.size() <= 20 &&
+             data.residence is string && data.residence.size() >= 1 && data.residence.size() <= 100 &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /registrations/{registrationId} {
+      // Anyone can create a registration (public form)
+      allow create: if isValidRegistration(request.resource.data);
+      
+      // Only admins can read or modify registrations
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin();
+    }
+  }
+}
