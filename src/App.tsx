@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState, ReactNode, Component, ErrorInfo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Calendar, 
@@ -292,7 +291,8 @@ const Info = () => (
 
         <div className="mt-12 p-1 rounded-xl bg-outline-variant/20">
           <div className="bg-surface rounded-lg h-48 flex items-center justify-center text-on-surface-variant/30 italic text-center px-6">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15892.20595846656!2d-4.000941497913277!3d5.254589183207489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1e8d59f0e9123%3A0x83db66548bbc445e!2sPetit-Bassam%2C%20Abidjan!5e0!3m2!1sen!2sci!4v1774875072864!5m2!1sen!2sci" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            Rendez-vous à l'entrée du quartier Petit Bassam pour une orientation par notre équipe d'accueil.
+
           </div>
         </div>
       </div>
@@ -461,6 +461,7 @@ const Footer = () => (
 
       <div className="flex gap-6">
         <a href="https://www.facebook.com/share/1ZPZYEH5wr/" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Facebook className="w-5 h-5" /></a>
+        <a href="#" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></a>
         <a href="https://youtube.com/@advainqueurs?si=5l0Jn_-STUYBNM7L" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Youtube className="w-5 h-5" /></a>
       </div>
 
