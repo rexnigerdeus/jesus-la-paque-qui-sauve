@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, ReactNode, Component, ErrorInfo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Calendar, 
@@ -98,7 +99,7 @@ const Hero = () => (
       </h1>
 
       <p className="text-lg md:text-xl text-on-surface-variant/80 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-        Rejoignez-nous pour une grande campagne d'évangélisation à Petit Bassam. 
+        Rejoignez-nous pour une grande campagne d'évangélisation. 
         Venez vivre le JÉSUS qui sauve à travers des moments de louange, de prédication et de communion fraternelle.
       </p>
 
@@ -292,7 +293,6 @@ const Info = () => (
         <div className="mt-12 p-1 rounded-xl bg-outline-variant/20">
           <div className="bg-surface rounded-lg h-48 flex items-center justify-center text-on-surface-variant/30 italic text-center px-6">
             Rendez-vous à l'entrée du quartier Petit Bassam pour une orientation par notre équipe d'accueil.
-
           </div>
         </div>
       </div>
@@ -461,7 +461,6 @@ const Footer = () => (
 
       <div className="flex gap-6">
         <a href="https://www.facebook.com/share/1ZPZYEH5wr/" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Facebook className="w-5 h-5" /></a>
-        <a href="#" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></a>
         <a href="https://youtube.com/@advainqueurs?si=5l0Jn_-STUYBNM7L" className="text-on-surface-variant/60 hover:text-primary transition-colors"><Youtube className="w-5 h-5" /></a>
       </div>
 
